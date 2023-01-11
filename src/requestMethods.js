@@ -2,9 +2,13 @@ import axios from "axios";
 
 const BASE_URL ="https://myparty55.herokuapp.com/api/"
 const TOKEN = () =>{
-    if(JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser.accessToken){
-        return JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser.accessToken
-    }else {
+    if (localStorage?.getItem("persist:root")){
+        if(JSON?.parse(JSON.parse(localStorage?.getItem("persist:root"))?.user)?.currentUser?.accessToken){
+            return JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser.accessToken
+        }else {
+            return ''
+        }
+    } else {
         return ''
     }
 }
