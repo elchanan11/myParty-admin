@@ -64,13 +64,13 @@ const Right = styled.div`
 `;
 
 const MenuLink = styled.div`
-  font-size: 14px;
+  font-size: 34px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   margin-right: 7px;
-  ${mobile({fontsize: '30px',marginRight:"0px" })}
+  ${mobile({fontsize: '80px',marginRight:"0px" })}
 `
 export default function Navbar(props){
 
@@ -133,7 +133,7 @@ export default function Navbar(props){
         >
             <Wrapper>
                 <Left>
-                    <MenuLink onClick = {handleLogOut} style={{fontsize:"90px",fontWeight:"600"}}>
+                    <MenuLink onClick = {handleLogOut} style={{fontsize:"190px",fontWeight:"600"}}>
                         התנתק
                     </MenuLink>
                 </Left>
@@ -145,6 +145,7 @@ export default function Navbar(props){
                 <Right>
                     <MenuLink>
                         <MenuIcon
+                            style={{fontSize:"80px"}}
                             onClick={toggleNav}
                             className="Burger"
                         />

@@ -47,6 +47,7 @@ a{
 }
 
 .Burger {
+    height: 100%;
     display: none;
     grid-area: burger;
     margin: 0 20px 0 0;

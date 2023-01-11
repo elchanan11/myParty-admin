@@ -67,10 +67,10 @@ export default function ProductList() {
       field: "action",
       headerName: "Action",
       width: 150
-      ,flex: 1,
+      ,flex: 2,
       renderCell: (params) => {
         return (
-          <>
+          <div style={{display:"flex",justifyContent:"space-between"}}>
             <Link to={"/product/" + params.row._id}>
               <button className="productListEdit">Edit</button>
             </Link>
@@ -78,12 +78,12 @@ export default function ProductList() {
               !isFetching ? <DeleteOutline
                   className="productListDelete"
                   onClick={() => handleDelete(params.row)}
-                  style={{height:"40px"}}
+                  style={{fontSize:"60px",justifyContent:"space-between"}}
               /> :
                   <CircularProgress />
             }
 
-          </>
+          </div>
         );
       },
     },

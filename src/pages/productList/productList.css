@@ -20,13 +20,14 @@ height: 100%;
 .productListEdit{
     border: none;
     font-size: 30px;
-
+    justify-content: center;
+    align-items: center;
     border-radius: 10px;
     padding: 5px 10px;
     background-color: #3bb077;
     color: white;
     cursor: pointer;
-    margin-right: 20px;
+    margin-right: 80px;
 }
 
 .productListDelete{
