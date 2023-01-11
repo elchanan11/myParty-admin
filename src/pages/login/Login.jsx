@@ -1,11 +1,14 @@
 import styled from "styled-components";
-import Logo from '../img_8.png'
-import {mobile} from "../responsive";
 import {useState} from "react";
-import backgroundLogo from '../img_23.png'
-import {login} from "../redux/apiCalls";
+import {login} from "../../redux/apiCalls";
 import {useDispatch, useSelector} from "react-redux";
-import {publicRequest} from "../requestMethods";
+import {publicRequest} from "../../requestMethods";
+import {mobile} from "../../responsive";
+import './login.css'
+import {Navigate, useNavigate} from "react-router-dom";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {auth} from '../../firebase'
+import {CircularProgress} from "@mui/material";
 
 const Container = styled.div`
   width: 100vw;
@@ -14,26 +17,25 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.9)),
-  url(${backgroundLogo}) center;
 `;
 
 const Wrapper = styled.div`
-  width: 25%;
+  width: 50%;
   padding: 20px;
   background-color: white;
-  ${mobile({width: '60%'})}
+  ${mobile({width: '80%'})}
   
 `;
 
 const Title = styled.h1`
-  font-size: 24px;
+  font-size: 64px;
   font-weight: 300;
   text-align: center;
 `;
 
 const Form = styled.form`
   display: flex;
+  height: 100%;
   flex-direction: column;
   align-items: center;
   ${mobile({margin: '40px'})}
@@ -41,23 +43,29 @@ const Form = styled.form`
 `;
 
 const Input = styled.input`
+  height: 500px;
   flex: 1;
+  width: 100%;
   min-width: 40%;
-  margin: 10px 0;
-  padding: 10px;
+ 
+  padding: 50px;
+  font-weight: 600;
   text-align: right;
+  margin: 20px;
+  margin-bottom: 30px;
 `;
 
 const Button = styled.button`
   width: 40%;
   border: none;
+  height: 60px;
   background-color: #354eca;
   color: white;
   cursor: pointer;
   margin-bottom: 10px;
   font-weight: 600;
   font-size: 20px;
-  ${mobile({width: '80px'})}
+  ${mobile({fontsize:"180px", height:"100px",width:"200px"})}
 
   &:disabled{
     color: blue;
@@ -88,6 +96,7 @@ const Login = () => {
     const [userPassword, setUserPassword] = useState("")
     const dispatch = useDispatch()
     const {isFetching,error} = useSelector((state) => state.user)
+    const navigate = useNavigate()
 
     const handleLogin = async (e)=>{
         e.preventDefault()
@@ -96,6 +105,20 @@ const Login = () => {
         }else {
             setIsFieldEmpty(false)
             login(dispatch, {email:userName,password:userPassword})
+            const auth = getAuth();
+            signInWithEmailAndPassword(auth, userName, userPassword)
+                .then((userCredential) => {
+                    // Signed in
+                    const user = userCredential.user;
+                    console.log(user)
+                    // ...
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                });
+
+            navigate('/')
         }
     }
 
@@ -104,19 +127,19 @@ const Login = () => {
             <Wrapper>
                 <Title>התחבר</Title>
                 <Form>
-                    <Input placeholder="אימייל" onChange={(e)=>setUserName(e.target.value)} />
+                    <Input type={"text"} placeholder="אימייל" onChange={(e)=>setUserName(e.target.value)} />
                     <Input placeholder="סיסמא"
                            type={"password"}
-                           onChange={(e)=>setUserPassword(e.target.value)}/>
-                    <Button onClick={handleLogin} disabled={isFetching}>התחבר</Button>
+                           onChange={(e)=>setUserPassword(e.target.value)}
+
+                    />
+                    <Button onClick={handleLogin} disabled={isFetching}>{!isFetching ? "התחבר" : <CircularProgress />}</Button>
                     {error && <Error>
                         שגיאה...
                     </Error>}
                     {isFieldEmpty && <FieldEmpty>
                         אנא מלא את כל השדות
                     </FieldEmpty>}
-                    <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
-                    <Link>CREATE A NEW ACCOUNT</Link>
                 </Form>
             </Wrapper>
         </Container>

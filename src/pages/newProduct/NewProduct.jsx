@@ -1,31 +1,197 @@
 import "./newProduct.css";
+import Navbar from "../../components/Navbar";
+import {useState} from "react";
+import {categoryData} from "../../dummyData";
+import app from "../../firebase";
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import {addProducts} from "../../redux/apiCalls";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
+import {CircularProgress} from "@mui/material";
 
 export default function NewProduct() {
+  const [inputs, setInputs] = useState({})
+  const [file, setFile] = useState(null)
+  const [cat,setCat] = useState([])
+  const [isPicPriceTitleNotAdd,setIsPicPriceTitleNotAdd] = useState(false)
+  const [isPhotoNotAdded,setIsPhotoNotAdded] = useState(false)
+  const [isFetching,setIsFetching] = useState(false)
+  const navigate = useNavigate()
+    console.log(isFetching)
+  const dispatch = useDispatch()
+
+  const handleChange = (e) => {
+    setInputs(prev=>{
+      return {...prev, [e.target.name]: e.target.value}
+    })
+  }
+
+  const handleCat = (e) => {
+     // setCat(e.target.value.split(","))
+      e.target.value !== "" &&
+            setCat(
+                prev=> {
+                    return[ ...prev,e.target.value ]
+                }
+            )
+
+      e.target.value !== "" &&
+            categoryData.splice(
+                categoryData.findIndex((item)=>item.cat === e.target.value)
+                ,1
+            )
+
+  }
+
+  const handleSubmitClick = (e) => {
+      e.preventDefault()
+
+      if (
+          inputs.title === ""
+          ||inputs.title === undefined
+          | inputs.price === ""
+          ||inputs.price === undefined
+      ){
+          setIsPicPriceTitleNotAdd(true)
+
+      }else {
+            setIsPicPriceTitleNotAdd(false)
+            if (file === "" || file === null ){
+            setIsPhotoNotAdded(true)
+          }else {
+                console.log(file)
+                setIsPhotoNotAdded(false)
+                const time = new Date().getTime()
+                const fileName =  `images/${time}/${file.name}`
+
+                // Firebase storage reference
+                const storage = getStorage(app)
+                const storageRef = ref(storage, fileName)
+
+                const metadata = {
+                    unlocked: "true",
+                };
+
+                setIsFetching(
+                    true
+                )
+                const uploadTask = uploadBytesResumable(storageRef, file,metadata)
+
+                // Register three observers:
+                // 1. 'state_changed' observer, called any time the state changes
+                // 2. Error observer, called on failure
+                // 3. Completion observer, called on successful completion
+                uploadTask.on('state_changed',
+                    (snapshot) => {
+
+                        console.log(isFetching)
+                        // Observe state change events such as progress, pause, and resume
+                        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        console.log('Upload is ' + progress + '% done');
+                        switch (snapshot.state) {
+                            case 'paused':
+                                console.log('Upload is paused');
+                                break;
+                            case 'running':
+                                console.log('Upload is running');
+                                break;
+                            default:
+                        }
+                    },
+                    (error) => {
+                        // Handle unsuccessful uploads
+                        setIsFetching(
+                            false
+                        )
+                        console.log("error: "+error)
+                    },
+                    () => {
+                        // Handle successful uploads on complete
+                        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+                        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                            console.log('File available at', downloadURL);
+                            const product = {...inputs,img:downloadURL, category: cat}
+                            addProducts(product,dispatch)
+                            setIsFetching(
+                                false
+                            )
+                            navigate("/")
+                        });
+                    }
+                );
+          }
+      }
+  }
+
   return (
-    <div className="newProduct">
-      <h1 className="addProductTitle">New Product</h1>
-      <form className="addProductForm">
-        <div className="addProductItem">
-          <label>Image</label>
-          <input type="file" id="file" />
+      <>
+        <Navbar>
+
+        </Navbar>
+        <div className="newProduct">
+          <h1 className="addProductTitle" style={{fontSize:"50px"}}>מוצר חדש</h1>
+          <form className="addProductForm">
+            <div className="addProductItem"  >
+              <label>תמונה</label>
+              <input type="file" id="file" onChange={e=> setFile(e.target.files[0])} />
+            </div>
+
+            <div className="addProductItem">
+              <label>כותרת מוצר (Title)</label>
+              <input name={"title"} type="text" placeholder="Apple " onChange={handleChange}/>
+            </div>
+
+            <div className="addProductItem">
+              <label>תיאור מוצר (Desc)</label>
+              <input name={"desc"} type="text" placeholder="Apple Airpods" onChange={handleChange}/>
+            </div>
+
+            <div className="addProductItem">
+              <label>מחיר מוצר (Price)</label>
+              <input name={"price"} type="text" placeholder="93" onChange={handleChange}/>
+            </div>
+
+            <div className="addProductItem">
+                <select onClick={handleCat} defaultValue={"select"}>
+                    <option value={""}>
+                        בחר קטגוריה
+                    </option>
+                    {
+                        categoryData.map(catItem=>(
+                            <option value={catItem.cat}  key={catItem.id} >
+                                {catItem.title}
+                            </option>
+                        ))
+                    }
+
+                </select>
+                {
+                    cat.map(catItem=>(
+                        <label key={catItem}>{catItem}</label>
+                    ))
+                }
+            </div>
+            <br/>
+            {
+              isPicPriceTitleNotAdd &&
+              <span style={{fontSize:"50px",fontWeight:"600",textAlign:"center"}}>
+              ***כותרת ומחיר הן חובה על מנת ליצור מוצר חדש... אנא וודא שכל השדות קיימיים***
+              </span>
+            }
+            {
+                isPhotoNotAdded &&
+                <span style={{fontSize:"50px",fontWeight:"600",textAlign:"center"}}>
+              ***תמונה הינה חובה על מנת ליצור מוצר חדש... אנא וודא שכל השדות קיימיים***
+              </span>
+            }
+            <br/>
+            <br/>
+            <button className="addProductButton" onClick={handleSubmitClick} disabled={isFetching}>{!isFetching ? "Create" : <CircularProgress />} </button>
+          </form>
+
         </div>
-        <div className="addProductItem">
-          <label>Name</label>
-          <input type="text" placeholder="Apple Airpods" />
-        </div>
-        <div className="addProductItem">
-          <label>Stock</label>
-          <input type="text" placeholder="123" />
-        </div>
-        <div className="addProductItem">
-          <label>Active</label>
-          <select name="active" id="active">
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-          </select>
-        </div>
-        <button className="addProductButton">Create</button>
-      </form>
-    </div>
+      </>
+
   );
 }

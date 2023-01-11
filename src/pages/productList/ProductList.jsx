@@ -1,57 +1,88 @@
 import "./productList.css";
-import { DataGrid } from "@material-ui/data-grid";
-import { DeleteOutline } from "@material-ui/icons";
-import { productRows } from "../../dummyData";
+import { DataGrid } from "@mui/x-data-grid";
+import { DeleteOutline } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import {useEffect, useState} from "react";
+import {deleteProducts, getProducts} from '../../redux/apiCalls'
+import {useDispatch,useSelector} from "react-redux";
+import { getStorage, ref, deleteObject } from "firebase/storage";
+import app from "../../firebase";
+import {CircularProgress} from "@mui/material";
 
 export default function ProductList() {
-  const [data, setData] = useState(productRows);
 
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+  const dispatch = useDispatch();
+
+  const products = useSelector(state => state.product.products)
+  const [isFetching,setIsFetching] = useState(false)
+
+  useEffect(()=>{
+
+    getProducts(dispatch)
+  }, [])
+
+  const handleDelete = (product) => {
+
+    const storage = getStorage(app);
+
+// Create a reference to the file to delete
+    const desertRef = ref(storage, product.img);
+    setIsFetching(true)
+// Delete the file
+    deleteObject(desertRef).then(() => {
+      deleteProducts(product._id,dispatch)
+      setIsFetching(false)
+    }).catch((error) => {
+      console.log(error)
+      setIsFetching(false)
+    });
+
+    //
   };
 
   const columns = [
-    { field: "id", headerName: "ID", width: 90 },
+    { field: "_id", headerName: "ID", width: 90 ,flex: 1.5},
     {
       field: "product",
       headerName: "Product",
       width: 200,
+      flex: 2,
       renderCell: (params) => {
         return (
           <div className="productListItem">
             <img className="productListImg" src={params.row.img} alt="" />
-            {params.row.name}
+            {params.row.title}
           </div>
         );
       },
     },
-    { field: "stock", headerName: "Stock", width: 200 },
-    {
-      field: "status",
-      headerName: "Status",
-      width: 120,
-    },
     {
       field: "price",
       headerName: "Price",
-      width: 160,
+      width: 160
+      ,flex: 1,
     },
+
     {
       field: "action",
       headerName: "Action",
-      width: 150,
+      width: 150
+      ,flex: 1,
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/product/" + params.row.id}>
+            <Link to={"/product/" + params.row._id}>
               <button className="productListEdit">Edit</button>
             </Link>
-            <DeleteOutline
-              className="productListDelete"
-              onClick={() => handleDelete(params.row.id)}
-            />
+            {
+              !isFetching ? <DeleteOutline
+                  className="productListDelete"
+                  onClick={() => handleDelete(params.row)}
+                  style={{height:"40px"}}
+              /> :
+                  <CircularProgress />
+            }
+
           </>
         );
       },
@@ -59,13 +90,21 @@ export default function ProductList() {
   ];
 
   return (
-    <div className="productList">
+    <div className="productList" style={{height:"500px", width:"100%"}}>
       <DataGrid
-        rows={data}
+        rowHeight={70}
+        rows={products}
+        getRowId={row=>row._id}
         disableSelectionOnClick
         columns={columns}
         pageSize={8}
         checkboxSelection
+        rowsPerPageOptions={[10,20,30]}
+        sx={{
+
+          fontSize:50,
+
+        }}
       />
     </div>
   );
