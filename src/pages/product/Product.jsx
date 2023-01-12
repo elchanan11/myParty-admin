@@ -1,4 +1,4 @@
-import {Link, useLocation} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import "./product.css";
 import {categoryData, productData} from "../../dummyData"
 import { Publish } from "@mui/icons-material";
@@ -14,6 +14,7 @@ import {CircularProgress} from "@mui/material";
 
 export default function Product() {
     const location = useLocation()
+    const navigate = useNavigate()
     const productId  = location.pathname.split("/")[2]
     const product= useSelector(state=> state.product.products.find((product)=> product._id === productId))
 
@@ -53,6 +54,7 @@ export default function Product() {
         setIsFetching(true)
         updateProducts(productId,updatedProduct,dispatch)
         setIsFetching(false)
+        navigate('/')
     }
 
 
@@ -120,20 +122,20 @@ export default function Product() {
 
                           <label>Price</label>
                           <input name={"price"} type="text" placeholder={product?.price} onChange={handleChange}/>
-
-                      </div>
-                      <div className="productFormRight">
-                          <div className="productUpload">
-                              <img
-                                  src={product?.img}
-                                  alt="" className="productUploadImg"/>
-                              <label htmlFor="file" >
-                                  <Publish style={{height:"50px",width:"50px"}}/>
-                              </label>
-                              <input type="file" id="file" style={{display: "none"}}/>
-                          </div>
                           <button className="productButton" onClick={handleSubmitClick}>{!isFetching? "Update" : <CircularProgress />}</button>
                       </div>
+                      {/*<div className="productFormRight">*/}
+                      {/*    <div className="productUpload">*/}
+                      {/*        <img*/}
+                      {/*            src={product?.img}*/}
+                      {/*            alt="" className="productUploadImg"/>*/}
+                      {/*        <label htmlFor="file" >*/}
+                      {/*            <Publish style={{height:"50px",width:"50px"}}/>*/}
+                      {/*        </label>*/}
+                      {/*        <input type="file" id="file" style={{display: "none"}}/>*/}
+                      {/*    </div>*/}
+
+                      {/*</div>*/}
                   </form>
               </div>
           </div>
