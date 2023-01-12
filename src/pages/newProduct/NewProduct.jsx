@@ -116,6 +116,9 @@ export default function NewProduct() {
                             setIsFetching(
                                 false
                             )
+                            setCat([])
+                            setInputs({})
+                            setFile(null)
                             navigate("/")
                         });
                     }
