@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const BASE_URL ="https://myparty55.herokuapp.com/api/"
+ const BASE_URL ="https://myparty55.herokuapp.com/api/"
+//const BASE_URL ="https://http:localhost:5000/api/"
+
 const TOKEN = () =>{
     if (localStorage?.getItem("persist:root")){
         if(JSON?.parse(JSON.parse(localStorage?.getItem("persist:root"))?.user)?.currentUser?.accessToken){

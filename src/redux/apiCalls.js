@@ -38,8 +38,10 @@ export const deleteProducts =  async (id,dispatch) => {
     try {
         const res = await userRequest.delete(`/product/${id}`)
         dispatch(deleteProductSuccess({id: id}))
+        alert(` המוצר נמחק בהצלחה`)
     }catch (err){
         dispatch(deleteProductFailure())
+        alert(`מחיקת מוצר נכשלה`)
         console.log(err)
     }
 }
@@ -49,9 +51,11 @@ export const updateProducts =  async (id,product,dispatch) => {
     try {
         const res = await userRequest.put(`/product/${id}`,product)
         dispatch(updateProductSuccess({id:id,product:product}))
+        alert(`${product.title}  עודכן בהצלחה!\n אנא רענן את דף הבית `)
     }catch (err){
         dispatch(updateProductFailure())
         console.log(err)
+        alert("עדכון המוצר נכשל!")
     }
 }
 
@@ -60,8 +64,9 @@ export const addProducts =  async (product,dispatch) => {
     try {
         const res = await userRequest.post(`/product`, product)
         dispatch(addProductSuccess(res.data))
+        alert(`${product.title}  התווסף בהצלחה!\n אנא רענן את דף הבית `)
     }catch (err){
         dispatch(addProductFailure())
-        console.log(err)
+        alert("הוספת מוצר נכשלה")
     }
 }

@@ -1,13 +1,13 @@
 import "./newProduct.css";
 import Navbar from "../../components/Navbar";
-import {useState} from "react";
-import {categoryData} from "../../dummyData";
+import {useEffect, useState} from "react";
 import app from "../../firebase";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import {addProducts} from "../../redux/apiCalls";
 import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
 import {CircularProgress} from "@mui/material";
+import {useNavigate} from "react-router-dom";
+import {categoryData} from "../../dummyData";
 
 export default function NewProduct() {
   const [inputs, setInputs] = useState({})
@@ -17,8 +17,14 @@ export default function NewProduct() {
   const [isPhotoNotAdded,setIsPhotoNotAdded] = useState(false)
   const [isFetching,setIsFetching] = useState(false)
   const navigate = useNavigate()
-    console.log(isFetching)
   const dispatch = useDispatch()
+
+  const [catData,setCatData] = useState([])
+  useEffect(()=>{
+      setCatData(categoryData)
+  },[])
+
+
 
   const handleChange = (e) => {
     setInputs(prev=>{
@@ -36,8 +42,8 @@ export default function NewProduct() {
             )
 
       e.target.value !== "" &&
-            categoryData.splice(
-                categoryData.findIndex((item)=>item.cat === e.target.value)
+            catData.splice(
+                catData.findIndex((item)=>item.cat === e.target.value)
                 ,1
             )
 
@@ -119,7 +125,9 @@ export default function NewProduct() {
                             setCat([])
                             setInputs({})
                             setFile(null)
+                            setCatData([])
                             navigate("/")
+                                //window.location.reload()
                         });
                     }
                 );
@@ -152,7 +160,7 @@ export default function NewProduct() {
 
             <div className="addProductItem">
               <label>מחיר מוצר (Price)</label>
-              <input name={"price"} type="text" placeholder="93" onChange={handleChange}/>
+              <input name={"price"} type="number" placeholder="93" onChange={handleChange}/>
             </div>
 
             <div className="addProductItem">
@@ -161,7 +169,7 @@ export default function NewProduct() {
                         בחר קטגוריה
                     </option>
                     {
-                        categoryData.map(catItem=>(
+                        catData.map(catItem=>(
                             <option value={catItem.cat}  key={catItem.id} >
                                 {catItem.title}
                             </option>

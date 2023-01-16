@@ -13,7 +13,9 @@ import NewProduct from "./pages/newProduct/NewProduct";
 import Product from "./pages/product/Product";
 import Login from "./pages/login/Login";
 import {useEffect, useState} from "react";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {publicRequest, userRequest} from "./requestMethods";
+import {logOut} from "./redux/userRedux";
 
 
 function App() {
@@ -38,8 +40,29 @@ function App() {
 
 
     const userAdmin = useSelector(state => state.user.currentUser?.isAdmin)
-
+    const userId = useSelector(state => state.user.currentUser?._id)
+    const dispatch = useDispatch()
     console.log(userAdmin)
+
+    useEffect(()=>{
+        const isTokemnVerified = async () => {
+            try {
+                const res = await userRequest.get(`/user/find/${userId}`)
+                console.log(res.data)
+            }catch (err){
+                console.log('token not valid')
+                logOutt()
+            }
+        }
+        userAdmin && isTokemnVerified()
+    },[])
+
+    const logOutt = async () =>{
+        await dispatch(
+            logOut()
+        )
+        console.log('user logged out')
+    }
 
     return (
         <Router>
