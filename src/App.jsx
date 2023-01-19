@@ -84,7 +84,7 @@ function App() {
                             userAdmin ? <Product /> : <Login />
                         }/>
 
-                        <Route exact path="/login" element={
+                        <Route exact path="/login" reloadDocument element={
                             userAdmin !== true
                                ? <Login />
                                 : <Navigate to={"/"} />

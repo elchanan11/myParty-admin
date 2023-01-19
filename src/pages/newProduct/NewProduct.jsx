@@ -177,6 +177,9 @@ export default function NewProduct() {
 
             <div className="addProductItem">
                 <select onChange={handleCat} >
+                    <option value={""}>
+                        בחר מוצר
+                    </option>
 
                     {
                         catData.map(catItem=>(

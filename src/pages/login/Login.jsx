@@ -119,7 +119,6 @@ const Login = () => {
                     console.log(errorMessage)
                 });
 
-            navigate('/')
         }
     }
 
