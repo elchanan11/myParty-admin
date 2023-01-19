@@ -13,6 +13,7 @@ export default function NewProduct() {
   const [inputs, setInputs] = useState({})
   const [file, setFile] = useState(null)
   const [cat,setCat] = useState([])
+  const [finalCats,setFinalCats] = useState([])
   const [isPicPriceTitleNotAdd,setIsPicPriceTitleNotAdd] = useState(false)
   const [isPhotoNotAdded,setIsPhotoNotAdded] = useState(false)
   const [isFetching,setIsFetching] = useState(false)
@@ -32,14 +33,17 @@ export default function NewProduct() {
     })
   }
 
-  const handleCat = (e) => {
+  const handleCat = async (e) => {
      // setCat(e.target.value.split(","))
-      e.target.value !== "" &&
-            setCat(
-                prev=> {
-                    return[ ...prev,e.target.value ]
-                }
-            )
+
+     const newCat = e.target.value
+     await e.target.value !== "" &&
+      setCat(
+          prev=>
+                    [ ...prev,newCat ]
+      )
+
+      await console.log(cat)
 
       e.target.value !== "" &&
             catData.splice(
@@ -48,6 +52,14 @@ export default function NewProduct() {
             )
 
   }
+  useEffect(()=>{
+      console.log("cat")
+      console.log(cat)
+      setFinalCats(
+          cat
+      )
+      console.log(finalCats)
+  },[cat])
 
   const handleSubmitClick = (e) => {
       e.preventDefault()
@@ -164,10 +176,8 @@ export default function NewProduct() {
             </div>
 
             <div className="addProductItem">
-                <select onClick={handleCat} defaultValue={"select"}>
-                    <option value={""}>
-                        בחר קטגוריה
-                    </option>
+                <select onChange={handleCat} >
+
                     {
                         catData.map(catItem=>(
                             <option value={catItem.cat}  key={catItem.id} >
