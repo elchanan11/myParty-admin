@@ -56,12 +56,12 @@ export default function ProductList() {
         );
       },
     },
-    {
-      field: "price",
-      headerName: "Price",
-      width: 160
-      ,flex: 0.5,
-    },
+    // {
+    //   field: "price",
+    //   headerName: "Price",
+    //   width: 160
+    //   ,flex: 0.5,
+    // },
 
     {
       field: "action",
