@@ -41,7 +41,7 @@ export default function ProductList() {
   };
 
   const columns = [
-    { field: "_id", headerName: "ID", width: 90 ,flex: 1.5},
+    { field: "_id", headerName: "ID", width: 90 ,flex: 0.5},
     {
       field: "product",
       headerName: "Product",
@@ -60,14 +60,14 @@ export default function ProductList() {
       field: "price",
       headerName: "Price",
       width: 160
-      ,flex: 1,
+      ,flex: 0.5,
     },
 
     {
       field: "action",
       headerName: "Action",
       width: 150
-      ,flex: 2,
+      ,flex: 1,
       renderCell: (params) => {
         return (
           <div style={{display:"flex",justifyContent:"space-between"}}>

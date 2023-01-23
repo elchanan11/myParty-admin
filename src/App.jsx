@@ -42,7 +42,6 @@ function App() {
     const userAdmin = useSelector(state => state.user.currentUser?.isAdmin)
     const userId = useSelector(state => state.user.currentUser?._id)
     const dispatch = useDispatch()
-    console.log(userAdmin)
 
     useEffect(()=>{
         const isTokemnVerified = async () => {

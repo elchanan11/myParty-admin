@@ -178,7 +178,7 @@ export default function NewProduct() {
             <div className="addProductItem">
                 <select onChange={handleCat} >
                     <option value={""}>
-                        בחר מוצר
+                        בחר קטגוריה
                     </option>
 
                     {
