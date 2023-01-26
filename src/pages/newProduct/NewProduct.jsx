@@ -175,6 +175,11 @@ export default function NewProduct() {
               <input name={"price"} type="number" placeholder="93" onChange={handleChange}/>
             </div>
 
+              <div className="addProductItem">
+                  <label>מחיר מוצר מעודכן </label>
+                  <input name={"updatedPrice"} type="number" placeholder="93" onChange={handleChange}/>
+              </div>
+
             <div className="addProductItem">
                 <select onChange={handleCat} >
                     <option value={""}>

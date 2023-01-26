@@ -108,6 +108,10 @@ export default function Product() {
                               <span className="productInfoValue">{product?.price}</span>
                           </div>
                           <div className="productInfoItem">
+                              <span className="productInfoKey">updated price:</span>
+                              <span className="productInfoValue">{product?.updatedPrice}</span>
+                          </div>
+                          <div className="productInfoItem">
                               <span className="productInfoKey">in stock:</span>
                               <span className="productInfoValue">{product?.inStock ? "Yes" : "No"}</span>
                           </div>
@@ -153,6 +157,11 @@ export default function Product() {
 
                           <label>Price</label>
                           <input name={"price"} type="text" placeholder={product?.price} onChange={handleChange}/>
+
+                          <label>Updated price</label>
+                          <input name={"updatedPrice"} type="text" placeholder={product?.updatedPrice} onChange={handleChange}/>
+
+
                           <button className="productButton" onClick={handleSubmitClick}>{!isFetching? "Update" : <CircularProgress />}</button>
                       </div>
                       {/*<div className="productFormRight">*/}
