@@ -6,7 +6,7 @@ import Navbar from "../../components/Navbar";
 
 import {mobile} from "../../responsive";
 import {useDispatch, useSelector} from "react-redux";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {getDownloadURL, getStorage, ref, uploadBytesResumable} from "firebase/storage";
 import app from "../../firebase";
 import {addProducts, updateProducts} from "../../redux/apiCalls";
@@ -21,6 +21,7 @@ export default function Product() {
     const [inputs, setInputs] = useState({})
     const [file, setFile] = useState(null)
     const [cat,setCat] = useState([])
+    const [inStock,setInStock] = useState(product?.inStock)
     const [isPicPriceTitleNotAdd,setIsPicPriceTitleNotAdd] = useState(false)
     const [isPhotoNotAdded,setIsPhotoNotAdded] = useState(false)
     const [isFetching,setIsFetching] = useState(false)
@@ -33,29 +34,43 @@ export default function Product() {
         })
     }
 
-    const handleCat = (e) => {
-        // setCat(e.target.value.split(","))
-        setCat(
-            prev=> {
-                return[ ...prev,e.target.value ]
-            }
-        )
-        categoryData.splice(
-            categoryData.findIndex((item)=>item.cat === e.target.value)
-            ,1
-        )
+    const handleInStockChange = (e) => {
+        console.log(product.inStock)
+        setInStock(e.target.value === "yes")
+        console.log(inStock)
     }
+
+
+    // const handleCat = (e) => {
+    //     // setCat(e.target.value.split(","))
+    //     setCat(
+    //         prev=> {
+    //             return[ ...prev,e.target.value ]
+    //         }
+    //     )
+    //     categoryData.splice(
+    //         categoryData.findIndex((item)=>item.cat === e.target.value)
+    //         ,1
+    //     )
+    // }
 
     const handleSubmitClick = (e) => {
         e.preventDefault()
+        console.log(inStock)
         const updatedProduct = {
-            ...product, ...inputs
+            ...product, ...inputs, inStock : inStock
         }
         setIsFetching(true)
         updateProducts(productId,updatedProduct,dispatch)
         setIsFetching(false)
         navigate('/')
     }
+
+    useEffect(()=>{
+       console.log(product)
+    },[])
+
+
 
 
 
@@ -93,6 +108,10 @@ export default function Product() {
                               <span className="productInfoValue">{product?.price}</span>
                           </div>
                           <div className="productInfoItem">
+                              <span className="productInfoKey">in stock:</span>
+                              <span className="productInfoValue">{product?.inStock ? "Yes" : "No"}</span>
+                          </div>
+                          <div className="productInfoItem">
                               <span className="productInfoKey">category:</span>
                               <ul>
                                   {
@@ -119,6 +138,18 @@ export default function Product() {
 
                           <label style={{marginBottom:"25px"}}>Description</label>
                           <input name={"desc"} type="text" placeholder={product?.desc} onChange={handleChange}/>
+
+                          <label style={{marginBottom:"25px"}}>במלאי-in stock</label>
+                          <input name={"inStock"} type="text" placeholder={"yes/no"} onChange={handleInStockChange}/>
+
+                          {/*<select onChange={handleInStockChange} >*/}
+                          {/*    <option value={"yes"}>*/}
+                          {/*        Yes*/}
+                          {/*    </option>*/}
+                          {/*    <option value={"no"}>*/}
+                          {/*        No*/}
+                          {/*    </option>*/}
+                          {/*</select>*/}
 
                           <label>Price</label>
                           <input name={"price"} type="text" placeholder={product?.price} onChange={handleChange}/>
