@@ -16,108 +16,205 @@ export const categorys = [
 export const categoryData = [
   {
     id:1,
-    title:"בלונים לאירועים",
-    cat: "BalloonsEvents"
+    title:"זרי בלוני הליום",
+    cat: "HeliumBalloonGarlands",
+    subCat: "MainBalloonsEvents"
   },
   {
     id:2,
-    title:"!!מבצעים",
-    cat: "Sales"
+    title:"בלוני בועה עם כיתוב",
+    cat: "BubbleBalloonsInscription",
+    subCat: "MainBalloonsEvents"
   },
   {
     id:3,
-    title:"בלוני הליום",
-    cat: "heliumBalloons"
+    title:"בללונים לניפוח עצמי",
+    cat: "SelfInflatingBalloons",
+    subCat: "MainBalloonsEvents"
   },
   {
     id:4,
-    title:"בלונים בהדפסה אישית",
-    cat: "CustomPrintedBalloons"
+    title:"שקיות בלונים",
+    cat: "BalloonBags",
+    subCat: "MainBalloonsEvents"
   },
   {
     id:5,
-    title:"בלונים לניפוח עצמי",
-    cat: "SelfInflatingBalloons"
+    title:"מארז בלון פורח",
+    cat: "HotAirBalloonCase",
+    subCat: "MainBalloonsEvents"
   },
   {
     id:6,
-    title:"בלונים באריזה",
-    cat: "BalloonsInPackage"
+    title:"ציוד לבלונים",
+    cat: "EquipmentForBalloons",
+    subCat: "MainBalloonsEvents"
   },
   {
     id:7,
     title:"מתנות קטנות",
-    cat: "SmallGifts"
+    cat: "SmallGifts",
+    subCat: "MainGifts"
   },
   {
     id:8,
-    title:"מתנות מיוחדות",
-    cat: "SpecialGifts"
+    title:"מתנות בהדפסה אישית",
+    cat: "PersonalizedPrintedGifts",
+    subCat: "MainGifts"
   },
   {
     id:9,
-    title:"מתנות לילדות/נערות",
-    cat: "GiftsForGirls"
+    title:"מתנות לנערות",
+    cat: "GiftsForGirls",
+    subCat: "MainGifts"
   },
   {
     id:10,
-    title:"מתנות לנשים",
-    cat: "GiftsForWomen"
+    title:"מתנות לאישה",
+    cat: "GiftsForWomen",
+    subCat: "MainGifts"
   },
   {
     id:11,
-    title:"מתנות לגברים",
-    cat: "GiftsForMen"
+    title:"מתנות לגבר",
+    cat: "GiftsForMen",
+    subCat: "MainGifts"
   },
   {
     id:12,
-    title:"דובים",
-    cat: "Bears"
+    title:"מתנות למשפחה",
+    cat: "giftsForTheFamily",
+    subCat: "MainGifts"
   },
   {
     id:13,
-    title:"קופסאות/מוצרי אריזה",
-    cat: "PackagingProducts"
+    title:"מתנות ליומולדת",
+    cat: "birthdayPresents",
+    subCat: "MainGifts"
   },
   {
     id:14,
-    title:"אביזרים ליום הולדת",
-    cat: "BirthdayAccessories"
+    title:"מתנות ללידה",
+    cat: "giftsForBirth",
+    subCat: "MainGifts"
   },
   {
     id:15,
-    title:"חד פעמי לימי הולדת",
-    cat: "DisposableForBirthdays"
+    title:"מתנות לנהג חדש",
+    cat: "GiftsForNewDriver",
+    subCat: "MainGifts"
   },
   {
     id:16,
-    title:"הדפסת מדבקות",
-    cat: "PrintingStickers"
+    title:"מתנות אהבה",
+    cat: "giftsLove",
+    subCat: "MainGifts"
   },
   {
     id:17,
-    title:"דף סוכר לעוגה",
-    cat: "SugarSheetForCake"
+    title:"מתנות לאירוסין",
+    cat: "EngagementGifts",
+    subCat: "MainGifts"
   },
   {
     id:18,
-    title:"שוקולדים",
-    cat: "Chocolates"
+    title:"דף סוכר לעוגה",
+    cat: "SugarSheetForCake",
+    subCat: "MainForCake"
   },
   {
     id:19,
-    title:"שמפניות (18+)",
-    cat: "Champagnes"
+    title:"דף סוכר לעוגה חלאקה",
+    cat: "SugarSheetForCakeHalaka",
+    subCat: "MainForCake"
   },
   {
     id:20,
-    title:"כוסות יין ושמפניה",
-    cat: "GlassesOfWine"
+    title:"דף טרנספר",
+    cat: "TransferPage",
+    subCat: "MainForCake"
   },
   {
     id:21,
-    title:"מוצרים מומלצים",
-    cat: "Reccomanded"
+    title:"קישוטים לעוגה",
+    cat: "CakeDecorations",
+    subCat: "MainForCake"
+  },
+  {
+    id:22,
+    title:"נרות לעוגה",
+    cat: "CakeCandles",
+    subCat: "MainForCake"
+  },
+  {
+    id:23,
+    title:"חד פעמי לפי צבעים",
+    cat: "ForkByColors",
+    subCat: "MainForParty"
+  },
+  {
+    id:24,
+    title:"חד פעמי מותגים",
+    cat: "specialFork",
+    subCat: "MainForParty"
+  },
+  {
+    id:25,
+    title:"וילונות פרנזים",
+    cat: "FringeCurtains",
+    subCat: "MainForParty"
+  },
+  {
+    id:26,
+    title:"דגלונים",
+    cat: "pennants",
+    subCat: "MainForParty"
+  },
+  {
+    id:27,
+    title:"קונפטי",
+    cat: "Confetti",
+    subCat: "MainForParty"
+  },
+  {
+    id:28,
+    title:"זוהרים למסיבה",
+    cat: "GlamorousParty",
+    subCat: "MainForParty"
+  },
+  {
+    id:29,
+
+    title:"זיקוקים",
+    cat: "fireworks",
+    subCat: "MainForParty"
+  },
+  {
+    id:30,
+    title:`"פרלינים "פרלין`,
+    cat: "pralinesPraline",
+    subCat: "MainChokolates"
+  },
+  {
+    id:31,
+
+    title:`פרלינים בלגיים "houser" `,
+    cat: "BelgianPralines",
+    subCat: "MainChokolates"
+  },
+  {
+    id:32,
+
+    title:"מארזי שוקולד",
+    cat: "ChocolateBoxes",
+    subCat: "MainChokolates"
+  },
+  {
+    id:33,
+
+    title:"שקיות שוקולד",
+    cat: "ChocolateBags",
+    subCat: "MainChokolates"
   },
 
 ]

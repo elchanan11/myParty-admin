@@ -64,11 +64,13 @@ export const updateProducts =  async (id,product,dispatch) => {
 export const addProducts =  async (product,dispatch) => {
     dispatch(addProductStart())
     try {
+        console.log(product)
         const res = await userRequest.post(`/product`, product)
         dispatch(addProductSuccess(res.data))
         alert(`${product.title}  התווסף בהצלחה!\n אנא רענן את דף הבית `)
     }catch (err){
         dispatch(addProductFailure())
+        console.log(err)
         alert("הוספת מוצר נכשלה")
     }
 }
