@@ -138,10 +138,10 @@ export default function Product() {
                   <form className="productForm">
                       <div className="productFormLeft">
                           <label>Title</label>
-                          <input name={"title"} type="text" placeholder={product?.title} onChange={handleChange}/>
+                          <input name={"title"} type="text" style={{direction:"rtl"}} placeholder={product?.title} onChange={handleChange}/>
 
                           <label style={{marginBottom:"25px"}}>Description</label>
-                          <input name={"desc"} type="text" placeholder={product?.desc} onChange={handleChange}/>
+                          <input name={"desc"} type="text" style={{direction:"rtl"}} placeholder={product?.desc} onChange={handleChange}/>
 
                           <label style={{marginBottom:"25px"}}>במלאי-in stock</label>
                           <input name={"inStock"} type="text" placeholder={"yes/no"} onChange={handleInStockChange}/>

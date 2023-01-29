@@ -162,12 +162,12 @@ export default function NewProduct() {
 
             <div className="addProductItem">
               <label>כותרת מוצר (Title)</label>
-              <input name={"title"} type="text" placeholder="Apple " onChange={handleChange}/>
+              <input name={"title"} style={{direction:"rtl"}} type="text" placeholder="Apple " onChange={handleChange}/>
             </div>
 
             <div className="addProductItem">
               <label>תיאור מוצר (Desc)</label>
-              <input name={"desc"} type="text" placeholder="Apple Airpods" onChange={handleChange}/>
+              <input name={"desc"} style={{direction:"rtl"}} type="text" placeholder="Apple Airpods" onChange={handleChange}/>
             </div>
 
             <div className="addProductItem">
