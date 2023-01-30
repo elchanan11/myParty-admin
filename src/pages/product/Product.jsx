@@ -29,6 +29,7 @@ export default function Product() {
 
 
     const handleChange = (e) => {
+        console.log(e.target.value)
         setInputs(prev=>{
             return {...prev, [e.target.name]: e.target.value}
         })
@@ -136,12 +137,12 @@ export default function Product() {
 
               <div className="productBottom">
                   <form className="productForm">
-                      <div className="productFormLeft">
+                      <div className="productFormLeft" style={{direction:"rtl"}}>
                           <label>Title</label>
                           <input name={"title"} type="text" style={{direction:"rtl"}} placeholder={product?.title} onChange={handleChange}/>
 
                           <label style={{marginBottom:"25px"}}>Description</label>
-                          <input name={"desc"} type="text" style={{direction:"rtl"}} placeholder={product?.desc} onChange={handleChange}/>
+                          <input style={{direction:"rtl"}} dir="auto" name={"desc"} type="text"  placeholder={product?.desc} onChange={handleChange}/>
 
                           <label style={{marginBottom:"25px"}}>במלאי-in stock</label>
                           <input name={"inStock"} type="text" placeholder={"yes/no"} onChange={handleInStockChange}/>

@@ -216,5 +216,12 @@ export const categoryData = [
     cat: "ChocolateBags",
     subCat: "MainChokolates"
   },
+  {
+    id:34,
+
+    title:"מומלצים",
+    cat: "Reccomanded",
+    subCat: "Reccomanded"
+  },
 
 ]
