@@ -136,6 +136,7 @@ export default function Product() {
 
 
               <div className="productBottom">
+                  עדכון במוצר:
                   <form className="productForm">
                       <div className="productFormLeft" style={{direction:"rtl"}}>
                           <label>כותרת:</label>

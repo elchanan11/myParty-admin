@@ -87,7 +87,10 @@
 .productBottom {
   padding: 20px;
   font-size: 60px;
+  direction: rtl;
   margin: 20px;
+  justify-content: center;
+  text-align: right;
   -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
 }
@@ -107,11 +110,13 @@
 .productFormLeft > label {
   font-weight: 600;
   font-size: 50px;
-  margin-bottom: 10px;
+  margin-top: 20px;
+  margin-bottom: 0;
   color: #514c4c;
 }
 
 .productFormLeft > input {
+  width: 100%;
   font-weight: 600;
   font-size: 40px;
   margin-bottom: 10px;

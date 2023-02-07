@@ -225,6 +225,14 @@ export default function NewProduct() {
           </form>
 
         </div>
+          <div style={{marginTop:"180px",flexDirection:"column",height:"100%",bottom:0,display:"flex",direction:"rtl",fontSize:"50px"}}>
+              <sp>
+                  *יש למלא את כל השדות
+              </sp>
+              <sp>
+                  *במידה ואין הנחה למוצר יש לשים את אותו מחיר עבור מחיר ומחיר מבצע
+              </sp>
+          </div>
       </>
 
   );
