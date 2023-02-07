@@ -97,27 +97,27 @@ export default function Product() {
                               <span className="productInfoValue">{product._id}</span>
                           </div>
                           <div className="productInfoItem">
-                              <span className="productInfoKey">title:</span>
+                              <span className="productInfoKey">כותרת:</span>
                               <span className="productInfoValue">{product?.title}</span>
                           </div>
                           <div className="productInfoItem">
-                              <span className="productInfoKey">desc:</span>
+                              <span className="productInfoKey">תיאור: </span>
                               <span className="productInfoValue">{product?.desc}</span>
                           </div>
                           <div className="productInfoItem">
-                              <span className="productInfoKey">price:</span>
+                              <span className="productInfoKey">מחיר רגיל:</span>
                               <span className="productInfoValue">{product?.price}</span>
                           </div>
                           <div className="productInfoItem">
-                              <span className="productInfoKey">updated price:</span>
+                              <span className="productInfoKey">מחיר לאחר מבצע:</span>
                               <span className="productInfoValue">{product?.updatedPrice}</span>
                           </div>
                           <div className="productInfoItem">
-                              <span className="productInfoKey">in stock:</span>
+                              <span className="productInfoKey">המוצר במלאי ?</span>
                               <span className="productInfoValue">{product?.inStock ? "Yes" : "No"}</span>
                           </div>
                           <div className="productInfoItem">
-                              <span className="productInfoKey">category:</span>
+                              <span className="productInfoKey">קטגוריות המוצר:</span>
                               <ul>
                                   {
                                       product?.category.map((category)=> {
@@ -138,13 +138,13 @@ export default function Product() {
               <div className="productBottom">
                   <form className="productForm">
                       <div className="productFormLeft" style={{direction:"rtl"}}>
-                          <label>Title</label>
+                          <label>כותרת:</label>
                           <input name={"title"} type="text" style={{direction:"rtl"}} placeholder={product?.title} onChange={handleChange}/>
 
-                          <label style={{marginBottom:"25px"}}>Description</label>
+                          <label style={{marginBottom:"25px"}}>תיאור:</label>
                           <input style={{direction:"rtl"}} dir="auto" name={"desc"} type="text"  placeholder={product?.desc} onChange={handleChange}/>
 
-                          <label style={{marginBottom:"25px"}}>במלאי-in stock</label>
+                          <label style={{marginBottom:"25px"}}>המוצר במלאי ? (yes/no)</label>
                           <input name={"inStock"} type="text" placeholder={"yes/no"} onChange={handleInStockChange}/>
 
                           {/*<select onChange={handleInStockChange} >*/}
@@ -156,10 +156,10 @@ export default function Product() {
                           {/*    </option>*/}
                           {/*</select>*/}
 
-                          <label>Price</label>
+                          <label>מחיר רגיל:</label>
                           <input name={"price"} type="text" placeholder={product?.price} onChange={handleChange}/>
 
-                          <label>Updated price</label>
+                          <label>מחיר לאחר מבצע</label>
                           <input name={"updatedPrice"} type="text" placeholder={product?.updatedPrice} onChange={handleChange}/>
 
 

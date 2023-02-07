@@ -13,6 +13,7 @@ export default function NewProduct() {
   const [inputs, setInputs] = useState({})
   const [file, setFile] = useState(null)
   const [cat,setCat] = useState([])
+    const [catToDisplay,setCatToDisplay] = useState([])
   const [finalCats,setFinalCats] = useState([])
   const [isPicPriceTitleNotAdd,setIsPicPriceTitleNotAdd] = useState(false)
   const [isPhotoNotAdded,setIsPhotoNotAdded] = useState(false)
@@ -58,6 +59,10 @@ export default function NewProduct() {
       setFinalCats(
           cat
       )
+      // setCatToDisplay(
+      //     prev=>
+      //         [ ...prev,newCat ]
+      // )
       console.log(finalCats)
   },[cat])
 
@@ -161,22 +166,22 @@ export default function NewProduct() {
             </div>
 
             <div className="addProductItem">
-              <label>כותרת מוצר (Title)</label>
+              <label>כותרת מוצר: </label>
               <input name={"title"} style={{direction:"rtl"}} type="text" placeholder="Apple " onChange={handleChange}/>
             </div>
 
             <div className="addProductItem">
-              <label>תיאור מוצר (Desc)</label>
+              <label>תיאור מוצר: </label>
               <input name={"desc"} style={{direction:"rtl"}} type="text" placeholder="Apple Airpods" onChange={handleChange}/>
             </div>
 
             <div className="addProductItem">
-              <label>מחיר מוצר (Price)</label>
+              <label>מחיר מוצר: </label>
               <input name={"price"} type="number" placeholder="93" onChange={handleChange}/>
             </div>
 
               <div className="addProductItem">
-                  <label>מחיר מוצר מעודכן </label>
+                  <label>מחיר מוצר לאחר מבצע: </label>
                   <input name={"updatedPrice"} type="number" placeholder="93" onChange={handleChange}/>
               </div>
 

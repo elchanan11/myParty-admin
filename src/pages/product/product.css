@@ -60,19 +60,23 @@
 }
 
 .productInfoBottom {
+  width: 100%;
   margin-top: 10px;
 }
 
 .productInfoKey{
+  padding-left: 20px;
   margin-right: 20px;
   font-weight: 600;
 }
 
 .productInfoItem {
-
+  direction: rtl;
   margin-top: 50px;
-  width: 150px;
+  width: 100%;
   display: flex;
+  border: 2px gray solid;
+  padding: 10px;
   justify-content: space-between;
 }
 
@@ -94,6 +98,8 @@
 }
 
 .productFormLeft {
+  direction: rtl;
+  justify-content: center;
   display: flex;
   flex-direction: column;
 }

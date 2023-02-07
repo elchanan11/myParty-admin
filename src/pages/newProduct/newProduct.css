@@ -17,6 +17,7 @@
 }
 
 .addProductItem {
+  direction: rtl;
 align-items: center;
   justify-content: center;
   display: flex;
