@@ -11,6 +11,8 @@ import {CSSTransition} from "react-transition-group";
 import {useDispatch} from "react-redux";
 import {logOut} from "../redux/userRedux";
 import {getAuth, signOut} from "firebase/auth";
+import {Clear, Search} from "@mui/icons-material";
+import SearchReasult from "./SearchReasult";
 
 const Container = styled.div`
   width: 100%;
@@ -47,6 +49,14 @@ const Center = styled.div`
   text-align: center;
 `;
 
+
+const ReasultContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`
+
 const Logo1 = styled.img`
   height: 120px;
   font-weight: bold;
@@ -76,6 +86,11 @@ export default function Navbar(props){
 
     const navigate = useNavigate();
     const dispach = useDispatch()
+    const [isSearchFieldOpen, setIsSearchFiledOpen] = useState(false)
+    const [textSearch,setTextSearch] = useState("")
+    const [isSearchResult, setIsSearchResult] = useState(false)
+
+
     const handleLogOut = async ()=> {
 
         const auth = getAuth();
@@ -95,10 +110,36 @@ export default function Navbar(props){
         }
     }
 
+
+    const handleSearchChanged = (e) => {
+        setTextSearch(e.target.value)
+        if (e.target.value.length > 1){
+            setIsSearchResult(true)
+        }else {
+            setIsSearchResult(false)
+        }
+    }
+
+    const handleSearchClicked = (e) => {
+        if (isSearchFieldOpen){
+            setIsSearchFiledOpen(!isSearchFieldOpen)
+            setIsSearchResult(false)
+            setTextSearch("")
+        }else {
+            setIsSearchFiledOpen(!isSearchFieldOpen)
+            // window.scrollTo({
+            //     top: 0,
+            //     left: 0,
+            //     behavior: "smooth"
+            // });
+        }
+    }
+
     /////////////////////////////////for Drop down menu/////////////////////////
 
     const [isNavVisible, setNavVisibility] = useState(false);
     const [isSmallScreen, setIsSmallScreen] = useState(false);
+
 
     useEffect(() => {
         const mediaQuery = window.matchMedia("(max-width: 700px)");
@@ -132,25 +173,71 @@ export default function Navbar(props){
             style={{position:isNavVisible===true ? "absolute" : "sticky"}}
         >
             <Wrapper>
-                <Left>
-                    <MenuLink onClick = {handleLogOut} style={{fontsize:"190px",fontWeight:"600"}}>
-                        התנתק
-                    </MenuLink>
-                </Left>
-                <Center>
-                    <Link to={"/"}>
-                        <Logo1 src={Logo} style={{marginRight:"5px"}}/>
-                    </Link>
-                </Center>
-                <Right>
-                    <MenuLink>
-                        <MenuIcon
-                            style={{fontSize:"80px"}}
-                            onClick={toggleNav}
-                            className="Burger"
-                        />
-                    </MenuLink>
-                </Right>
+                {
+                    isSearchFieldOpen ?
+                        <ReasultContainer>
+                            <input onChange={handleSearchChanged}
+                                   placeholder={"חפש מוצרים"}
+                                   style={{
+                                       backgroundColor:"white",
+                                       height:"50px",
+
+                                       border:"none",
+
+
+
+
+                                       direction:"rtl"
+                                       ,textAlign:"right",
+                                       marginRight : "3 px",
+                                       alignItems:"center",
+                                       display:"flex",
+                                       fontSize:"20px"
+                                   }}
+                            />
+                            {
+                                isSearchResult &&
+                                <SearchReasult serchText={textSearch}/>
+                            }
+                            <Clear
+                                onClick={handleSearchClicked}
+                                fontSize={"large"}
+                                style={{position:"absolute",top:16}}
+                            />
+                        </ReasultContainer> :
+                        <>
+                            <Left>
+                                <MenuLink onClick = {handleLogOut} style={{fontsize:"190px",fontWeight:"600"}}>
+                                    התנתק
+                                </MenuLink>
+
+                                <MenuLink style={{marginLeft:"30px",justifyContent:"flex-end"}} onClick={handleSearchClicked}>
+                                    {
+                                        // !isSearchFieldOpen ?
+                                        <Search fontSize={"large"}/>
+                                        // :
+                                        // <Clear />
+                                    }
+
+                                </MenuLink>
+                            </Left>
+                            <Center>
+                                <Link to={"/"}>
+                                    <Logo1 src={Logo} style={{marginRight:"5px"}}/>
+                                </Link>
+                            </Center>
+                            <Right>
+
+                                <MenuLink>
+                                    <MenuIcon
+                                        style={{fontSize:"80px"}}
+                                        onClick={toggleNav}
+                                        className="Burger"
+                                    />
+                                </MenuLink>
+                            </Right>
+                        </>
+                }
             </Wrapper>
             <CSSTransition
                 in={isNavVisible}
