@@ -36,7 +36,14 @@ export default function NewProduct() {
 
   const handleCat = async (e) => {
      // setCat(e.target.value.split(","))
-
+    // setCatToDisplay(
+    //     prev=>
+    //         [ ...prev,catData.filter(item=>{
+    //             return (
+    //                 item.
+    //             )
+    //         }) ]
+    // )
      const newCat = e.target.value
      await e.target.value !== "" &&
       setCat(
@@ -72,8 +79,10 @@ export default function NewProduct() {
       if (
           inputs.title === ""
           ||inputs.title === undefined
-          | inputs.price === ""
+          || inputs.price === ""
           ||inputs.price === undefined
+          || inputs.updatedPrice === ""
+          ||inputs.updatedPrice === undefined
       ){
           setIsPicPriceTitleNotAdd(true)
 

@@ -180,7 +180,7 @@ export default function Navbar(props){
                                    placeholder={"חפש מוצרים"}
                                    style={{
                                        backgroundColor:"white",
-                                       height:"50px",
+                                       height:"100px",
 
                                        border:"none",
 
@@ -192,7 +192,7 @@ export default function Navbar(props){
                                        marginRight : "3 px",
                                        alignItems:"center",
                                        display:"flex",
-                                       fontSize:"20px"
+                                       fontSize:"40px"
                                    }}
                             />
                             {
@@ -202,7 +202,7 @@ export default function Navbar(props){
                             <Clear
                                 onClick={handleSearchClicked}
                                 fontSize={"large"}
-                                style={{position:"absolute",top:16}}
+                                style={{position:"absolute",top:16,fontSize:"70px"}}
                             />
                         </ReasultContainer> :
                         <>
@@ -214,7 +214,7 @@ export default function Navbar(props){
                                 <MenuLink style={{marginLeft:"30px",justifyContent:"flex-end"}} onClick={handleSearchClicked}>
                                     {
                                         // !isSearchFieldOpen ?
-                                        <Search fontSize={"large"}/>
+                                        <Search fontSize={"large"} style={{fontSize:"70px"}}/>
                                         // :
                                         // <Clear />
                                     }
