@@ -7,9 +7,9 @@ import Navbar from "../../components/Navbar";
 import {mobile} from "../../responsive";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {getDownloadURL, getStorage, ref, uploadBytesResumable} from "firebase/storage";
+import {deleteObject, getDownloadURL, getStorage, ref, uploadBytesResumable} from "firebase/storage";
 import app from "../../firebase";
-import {addProducts, updateProducts} from "../../redux/apiCalls";
+import {addProducts, deleteProducts, updateProducts} from "../../redux/apiCalls";
 import {CircularProgress} from "@mui/material";
 
 export default function Product() {
@@ -41,6 +41,26 @@ export default function Product() {
         console.log(inStock)
     }
 
+    const handleDelete = () => {
+
+        const storage = getStorage(app);
+
+// Create a reference to the file to delete
+        const desertRef = ref(storage, product.img);
+        setIsFetching(true)
+// Delete the file
+        deleteObject(desertRef).then(() => {
+            deleteProducts(product._id,dispatch)
+            setIsFetching(false)
+            navigate('/')
+        }).catch((error) => {
+            console.log(error)
+            setIsFetching(false)
+            navigate('/')
+        });
+
+        //
+    };
 
     // const handleCat = (e) => {
     //     // setCat(e.target.value.split(","))
@@ -179,6 +199,10 @@ export default function Product() {
 
                       {/*</div>*/}
                   </form>
+              </div>
+              <div className="productBottom" style={{display:"flex",flexDirection:"column"}}>
+                  מחיקת מוצר
+                  <button style={{backgroundColor:"red"}} className="productButton" onClick={handleDelete}>{!isFetching? "Delete" : <CircularProgress />}</button>
               </div>
           </div>
       </>

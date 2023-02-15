@@ -1,3 +1,5 @@
+const CategoryItem = ""
+
 export const categorys = [
   {
     id:1,
@@ -16,208 +18,414 @@ export const categorys = [
 export const categoryData = [
   {
     id:1,
-    title:"זרי בלוני הליום",
+    title:"זריי בלוני הליום",
     cat: "HeliumBalloonGarlands",
     subCat: "MainBalloonsEvents"
   },
   {
     id:2,
-    title:"בלוני בועה עם כיתוב",
-    cat: "BubbleBalloonsInscription",
+    img:CategoryItem,
+    title:"בלונים בהדפסה אישית",
+    cat: "personalPrintingBaloons",
     subCat: "MainBalloonsEvents"
   },
   {
     id:3,
-    title:"בללונים לניפוח עצמי",
+    img:CategoryItem,
+    title:"בלונים לניפוח עצמי",
     cat: "SelfInflatingBalloons",
     subCat: "MainBalloonsEvents"
   },
   {
     id:4,
+    img:CategoryItem,
     title:"שקיות בלונים",
     cat: "BalloonBags",
     subCat: "MainBalloonsEvents"
   },
   {
     id:5,
-    title:"מארז בלון פורח",
-    cat: "HotAirBalloonCase",
+    img:CategoryItem,
+    title:"אביזרים לבלונים",
+    cat: "equitmentForBloons",
     subCat: "MainBalloonsEvents"
   },
   {
     id:6,
-    title:"ציוד לבלונים",
-    cat: "EquipmentForBalloons",
+    img:CategoryItem,
+    title:"מוצרים נלווים לבלונים",
+    cat: "sideProductsForBalloons",
     subCat: "MainBalloonsEvents"
   },
   {
     id:7,
-    title:"מתנות קטנות",
-    cat: "SmallGifts",
+    img:CategoryItem,
+    title:"מתנות",
+    cat: "gifts",
     subCat: "MainGifts"
   },
   {
     id:8,
-    title:"מתנות בהדפסה אישית",
-    cat: "PersonalizedPrintedGifts",
+    img:CategoryItem,
+    title:"מנורות",
+    cat: "lightGifts",
     subCat: "MainGifts"
   },
   {
     id:9,
-    title:"מתנות לנערות",
+    title:"מתנות לילדות ונערות",
     cat: "GiftsForGirls",
     subCat: "MainGifts"
   },
   {
     id:10,
+    img:CategoryItem,
     title:"מתנות לאישה",
     cat: "GiftsForWomen",
     subCat: "MainGifts"
   },
   {
     id:11,
-    title:"מתנות לגבר",
+    img:CategoryItem,
+    title:"מתנות לבעל",
     cat: "GiftsForMen",
     subCat: "MainGifts"
   },
   {
     id:12,
-    title:"מתנות למשפחה",
-    cat: "giftsForTheFamily",
-    subCat: "MainGifts"
-  },
-  {
-    id:13,
-    title:"מתנות ליומולדת",
-    cat: "birthdayPresents",
+    img:CategoryItem,
+    title:"מתנות החלמה מהירה",
+    cat: "giftsForFastRecovery",
     subCat: "MainGifts"
   },
   {
     id:14,
-    title:"מתנות ללידה",
+    img:CategoryItem,
+    title:"מתנות לידה",
     cat: "giftsForBirth",
     subCat: "MainGifts"
   },
   {
     id:15,
+    img:CategoryItem,
     title:"מתנות לנהג חדש",
     cat: "GiftsForNewDriver",
     subCat: "MainGifts"
   },
   {
-    id:16,
-    title:"מתנות אהבה",
-    cat: "giftsLove",
-    subCat: "MainGifts"
-  },
-  {
     id:17,
-    title:"מתנות לאירוסין",
+    img:CategoryItem,
+    title:"מתנות מאורסים",
     cat: "EngagementGifts",
     subCat: "MainGifts"
   },
   {
     id:18,
-    title:"דף סוכר לעוגה",
-    cat: "SugarSheetForCake",
+    img:CategoryItem,
+    title:"דף אכיל לעוגה",
+    cat: "etableSheetForCake",
     subCat: "MainForCake"
   },
   {
     id:19,
-    title:"דף סוכר לעוגה חלאקה",
-    cat: "SugarSheetForCakeHalaka",
-    subCat: "MainForCake"
-  },
-  {
-    id:20,
-    title:"דף טרנספר",
+    img:CategoryItem,
+    title:"דף טרנספר לעוגה",
     cat: "TransferPage",
     subCat: "MainForCake"
   },
   {
-    id:21,
-    title:"קישוטים לעוגה",
-    cat: "CakeDecorations",
+    id:20,
+    img:CategoryItem,
+    title:"נרות מספר",
+    cat: "candelsCake",
     subCat: "MainForCake"
   },
   {
-    id:22,
+    id:21,
+    img:CategoryItem,
     title:"נרות לעוגה",
     cat: "CakeCandles",
     subCat: "MainForCake"
   },
   {
+    id:22,
+    img:CategoryItem,
+    title:"זיקוקי מספר",
+    cat: "fireWorksNumberCake",
+    subCat: "MainForCake"
+  },
+  {
+    id:80,
+    img:CategoryItem,
+    title:"טופרים לעוגה",
+    cat: "cForCake",
+    subCat: "MainForCake"
+  },
+  {
     id:23,
-    title:"חד פעמי לפי צבעים",
-    cat: "ForkByColors",
+    img:CategoryItem,
+    title:"זוהרים למסיבות",
+    cat: "lightsParty",
     subCat: "MainForParty"
   },
   {
     id:24,
-    title:"חד פעמי מותגים",
-    cat: "specialFork",
+    img:CategoryItem,
+    title:"תותחי קונפטי",
+    cat: "confetyParty",
     subCat: "MainForParty"
   },
   {
     id:25,
-    title:"וילונות פרנזים",
-    cat: "FringeCurtains",
+    img:CategoryItem,
+    title:"זיקוקים",
+    cat: "fireworksParty",
     subCat: "MainForParty"
   },
   {
     id:26,
-    title:"דגלונים",
-    cat: "pennants",
+    img:CategoryItem,
+    title:"כלים חד פעמיים",
+    cat: "forkAndKnifeForParty",
     subCat: "MainForParty"
   },
   {
     id:27,
-    title:"קונפטי",
-    cat: "Confetti",
+    img:CategoryItem,
+    title:"כלי הגשה",
+    cat: "ServingDishesParty",
     subCat: "MainForParty"
   },
   {
     id:28,
-    title:"זוהרים למסיבה",
-    cat: "GlamorousParty",
+    img:CategoryItem,
+    title:"קישוטים למסיבה",
+    cat: "decorationsParty",
     subCat: "MainForParty"
   },
   {
     id:29,
-
-    title:"זיקוקים",
-    cat: "fireworks",
+    img:CategoryItem,
+    title:"קישוטים ליומולדת",
+    cat: "decorationsBirthDay",
+    subCat: "MainForParty"
+  },
+  {
+    id:98,
+    img:CategoryItem,
+    title:"סרטי סאטן",
+    cat: "SatinibbonsParty",
+    subCat: "MainForParty"
+  },
+  {
+    id:99,
+    img:CategoryItem,
+    title:"מפות חד פעמיות",
+    cat: "disposableMapsParty",
     subCat: "MainForParty"
   },
   {
     id:30,
-    title:`"פרלינים "פרלין`,
+    title:`פרלינים "פרלין"`,
     cat: "pralinesPraline",
     subCat: "MainChokolates"
   },
   {
     id:31,
-
-    title:`פרלינים בלגיים "houser" `,
+    img:CategoryItem,
+    title:`פרלינים "hauser" `,
     cat: "BelgianPralines",
     subCat: "MainChokolates"
   },
   {
-    id:32,
-
-    title:"מארזי שוקולד",
-    cat: "ChocolateBoxes",
-    subCat: "MainChokolates"
-  },
-  {
     id:33,
-
-    title:"שקיות שוקולד",
+    img:CategoryItem,
+    title:"שקולדים בצלופן",
     cat: "ChocolateBags",
     subCat: "MainChokolates"
   },
   {
-    id:34,
+    id:35,
+
+    title:"בקבוקים",
+    cat: "bottles",
+    subCat: "personalPrinting"
+  },
+  {
+    id:36,
+
+    title:"כוסות",
+    cat: "glsses",
+    subCat: "personalPrinting"
+  },
+  {
+    id:37,
+
+    title:"מברשות שיער",
+    cat: "hair",
+    subCat: "personalPrinting"
+  },
+  {
+    id:38,
+
+    title:"קופסאות",
+    cat: "boxes",
+    subCat: "personalPrinting"
+  },
+  {
+    id:39,
+
+    title:"מוצרים עם כיתוב מדבקה",
+    cat: "productsWithStickerText",
+    subCat: "personalPrinting"
+  },
+  {
+    id:40,
+    title:"דף סוכר לעוגה",
+    cat: "sugerPageForCake",
+    subCat: "personalPrinting"
+  },
+  {
+    id:41,
+    title:"שמפניה + כוסות",
+    cat: "shampeinAndGlasses",
+    subCat: "MBoxes"
+  },
+  {
+    id:42,
+    title:"כוסות עם כיתוב",
+    cat: "glssesWithTextt",
+    subCat: "MBoxes"
+  },
+  {
+    id:43,
+
+    title:"דובים עם שוקולד",
+    cat: "bears",
+    subCat: "MBoxes"
+  },
+  {
+    id:44,
+
+    title:"מארז בלון פורח",
+    cat: "flyingBloonBox",
+    subCat: "MBoxes"
+  },
+  {
+    id:45,
+
+    title:"מארזי לידה",
+    cat: "birthBox",
+    subCat: "MBoxes"
+  },
+  {
+    id:46,
+
+    title:"קופסאות למארזים",
+    cat: "boxesForPackeges",
+    subCat: "MBoxes"
+  },
+  {
+    id:47,
+    title:"מבצעים",
+    cat: "shampeinAndGlasses",
+    subCat: "MainSales"
+  },
+  {
+    id:48,
+    title:"דובים במבצע",
+    cat: "glssesWithTextt",
+    subCat: "MainSales"
+  },
+  {
+    id:49,
+
+    title:"מארזים במבצע",
+    cat: "bears",
+    subCat: "MainSales"
+  },
+  {
+    id:50,
+
+    title:"בלונים במבצע",
+    cat: "flyingBloonBox",
+    subCat: "MainSales"
+  },
+  {
+    id:51,
+
+    title:"מוצרים במבצע",
+    cat: "birthBox",
+    subCat: "MainSales"
+  },
+  {
+    id:52,
+    title:"מתנות במבצע",
+    cat: "boxesForPackeges",
+    subCat: "MainSales"
+  },
+  {
+    id:53,
+
+    title:"שנה טובה",
+    cat: "goodYear",
+    subCat: "MainHolydays"
+  },
+  {
+    id:54,
+
+    title:"סוכות",
+    cat: "holiday",
+    subCat: "MainHolydays"
+  },
+  {
+    id:55,
+
+    title:"חנוכה",
+    cat: "holiday2",
+    subCat: "MainHolydays"
+  },
+  {
+    id:56,
+    title:"פורים",
+    cat: "hokiday3",
+    subCat: "MainHolydays"
+  },
+  {
+    id:57,
+    title:"פסח",
+    cat: "hokiday4",
+    subCat: "MainHolydays"
+  },
+  {
+    id:58,
+
+    title:"שבועות",
+    cat: "hokiday5",
+    subCat: "MainHolydays"
+  },
+  {
+    id:59,
+
+    title:"קיץ",
+    cat: "summer",
+    subCat: "MainHolydays"
+  },
+  {
+    id:60,
+
+    title:"חורף",
+    cat: "winter",
+    subCat: "MainHolydays"
+  },
+  {
+    id:61,
+    title:"שונות",
+    cat: "different",
+    subCat: "MainHolydays"
+  },
+  {
+    id:62,
 
     title:"מומלצים",
     cat: "Reccomanded",
